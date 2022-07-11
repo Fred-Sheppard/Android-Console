@@ -26,18 +26,18 @@ class Console {
   }
 
   void log(int i) {
-    console.log(str(i));
+    log(str(i));
   }
 
   void log(float f) {
-    console.log(str(f));
+    log(str(f));
   }
   void log(boolean b) {
-    console.log(str(b));
+    log(str(b));
   }
 
   void log(char c) {
-    console.log(str(c));
+    log(str(c));
   }
 
 
