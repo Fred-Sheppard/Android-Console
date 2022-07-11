@@ -3,9 +3,8 @@ Console console;
 void setup(){
   fullScreen();
   console = new Console();
-  console.log("Hello");
-  console.log("World");
-  for (int i = 0; i < 20; i++){
+  for (int i = 1; i < 20; i++){
+    console.log(char(i+64));
     console.log(i);
   }
 }

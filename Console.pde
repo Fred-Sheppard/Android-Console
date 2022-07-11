@@ -4,12 +4,13 @@ class Console {
   String disp;
   int y;
   int maxHistoryLength = 50;
+  int textSize = 30;
   color fgcolour, bgcolour;
   boolean scrolling = false;
 
   Console() {
     history = new StringList();
-    bgcolour = 000000;
+    bgcolour = #000000;
     fgcolour = #ffffff;
   }
 
@@ -40,6 +41,17 @@ class Console {
     log(str(c));
   }
 
+  void setbgColour(color c) {
+    bgcolour = c;
+  }
+
+  void setfgColour(color c) {
+    fgcolour = c;
+  }
+
+  void setMaxHistoryLength(int i) {
+    maxHistoryLength = i;
+  } 
 
   void display() {
     if (scrolling) {
@@ -48,7 +60,7 @@ class Console {
     background(bgcolour);
     fill(fgcolour);
     stroke(fgcolour);
-    textSize(50*displayDensity);
+    textSize(textSize*displayDensity);
     textAlign(LEFT, TOP);
     y = y>0 ? 0 : y;
     text(disp, 0, y);
