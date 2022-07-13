@@ -4,14 +4,19 @@ class Console {
   String disp;
   int y;
   int maxHistoryLength = 50;
-  int textSize = 30;
+  int textSize = 40;
+  float ctextSize;
   color fgcolour, bgcolour;
   boolean scrolling = false;
+  boolean isTyping = true;
+  String typing = "";
+  boolean cursor = false;
 
   Console() {
     history = new StringList();
     bgcolour = #000000;
     fgcolour = #ffffff;
+    ctextSize = textSize*displayDensity;
   }
 
   void log(String str) {
@@ -64,5 +69,21 @@ class Console {
     textAlign(LEFT, TOP);
     y = y>0 ? 0 : y;
     text(disp, 0, y);
+    if (isTyping) {
+      float yy = (1.35*textAscent()+textDescent())
+      *history.size()+y;
+      text(typing, 0, yy);
+      if (cursor) {
+        text("|", textWidth(typing), yy);
+      }
+    }
+    /*if (frameCount%30 == 0) {
+     cursor = !cursor;}*/
+    cursor = frameCount%30==0 ^ cursor; //nice
+  }
+
+  void requestInput(String message) {
+    isTyping = true;
+    log(message);
   }
 }
