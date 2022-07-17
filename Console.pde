@@ -71,7 +71,7 @@ class Console {
     text(disp, 0, y);
     if (isTyping) {
       float yy = (1.35*textAscent()+textDescent())
-      *history.size()+y;
+        *history.size()+y;
       text(typing, 0, yy);
       if (cursor) {
         text("|", textWidth(typing), yy);
@@ -85,5 +85,34 @@ class Console {
   void requestInput(String message) {
     isTyping = true;
     log(message);
+  }
+
+  void keyPressed() {
+    if (key == CODED) {
+      if (keyCode == 67 && typing.length() > 0) {
+        typing = typing.substring(0, typing.length()-1);
+      } else if (keyCode == 66) {
+        sendInput(typing);
+        return;
+      }
+    } else { //key != CODED
+      typing += key;
+    }
+  }
+
+  void sendInput(String input) {
+    isTyping = false;
+    typing = "";
+    String s = "Your input was: " + input;
+    log(s);
+  }
+
+  void touchStarted() {
+    scrolling = true;
+    if (mouseX > width*.8) openKeyboard();
+  }
+
+  void touchEnded() {
+    scrolling = false;
   }
 }

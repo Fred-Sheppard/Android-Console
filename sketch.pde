@@ -15,15 +15,13 @@ void draw(){
 }
 
 void touchStarted(){
-  console.scrolling = true;
-  if (mouseX > width*.8) openKeyboard();
+  console.touchStarted();
 }
 
 void touchEnded(){
-  console.scrolling = false;
+  console.touchEnded();
 }
 
 void keyPressed(){
-  if (key != CODED && keyCode != 66)
-  console.typing += key;
+  console.keyPressed();
 }
